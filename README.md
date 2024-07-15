@@ -12,7 +12,7 @@ This repository is neither a howto nor an installation manual. Using these files
 ## Recommendations
 I recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
-For macOS to be able to boot on the MateBook 13 2019, the `Secure Boot` option needs to be _**disabled**_ in the BIOS.
+For macOS to be able to boot on the MateBook 13 2019, the `Secure Boot` option _**must be disabled**_ in the UEFI.
 
 Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` file. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a MateBook 13 2019 with this repository's EFI folder.
 
@@ -68,7 +68,7 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 
 ## What will probably never work
 - [ ] NVIDIA GeForce MX150 dGPU (disabled with `SSDT-dGPU-Off.aml`)
-- [ ] Fingerprint sensor (disabled in the UEFI Firmware)
+- [ ] Fingerprint sensor (disabled in the UEFI)
 - [ ] Webcam (depends on the camera vendor of your model)
 
 ## Enabling native HiDPI display settings in macOS
