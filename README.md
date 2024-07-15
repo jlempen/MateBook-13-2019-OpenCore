@@ -4,17 +4,17 @@
 macOS on the Huawei MateBook 13 2019 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Abstract
-Apart from the webcam and the fingerprint sensor, everything is working fine. The battery runtime is around five to six hours.
+Apart from the webcam and the fingerprint sensor, everything is working perfectly like on a real MacBook Air/Pro. The battery runtime is around five to six hours, similar to the battery runtime in Windows.
 
 ## Disclaimer
-This repository is neither a howto nor an installation manual. Using these files requires at least basic knowledge of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg), ACPI, UEFI and the art of hackintoshing in general. I recommend reading the excellent [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide), as well as all its linked resources. For those who wish to improve their hackintoshing knowledge, the [OC-Little-Translated](https://github.com/5T33Z0/OC-Little-Translated) repository is the most comprehensive resource I've found on the subject.
+This repository is neither a howto nor an installation manual. Using these files requires at least basic knowledge of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg), ACPI, UEFI and the art of hackintoshing in general. I recommend reading the excellent [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide), as well as all its linked resources. For those who wish to improve their hackintoshing knowledge, [5T33Z0's OC-Little-Translated](https://github.com/5T33Z0/OC-Little-Translated) repository is the most comprehensive resource I've found on the subject.
 
 ## Recommendations
 I recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
 For macOS to be able to boot on the MateBook 13 2019, the `Secure Boot` option needs to be _**disabled**_ in the BIOS.
 
-Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` files. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a MateBook 13 2019 with this repository's EFI folder.
+Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` file. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a MateBook 13 2019 with this repository's EFI folder.
 
 ## Software Specifications
 | Software         | Version                            |
@@ -49,7 +49,7 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 - [x] SSD drive
 - [x] Sleep/hibernate and wake
 - [x] Left and right USB-C ports with hotplug
-- [x] Intel WLAN with fully working iServices on macOS Ventura
+- [x] Intel WLAN with fully working Apple Messages and FaceTime on macOS Ventura
 - [x] Intel Bluetooth
 - [ ] Webcam (depends on the camera vendor of your model)
 - [x] Internal speakers, microphone and Combojack
@@ -57,22 +57,22 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 - [x] Power Button long-press opens Sleep/Shutdown menu
 - [x] Lid sleep and wake
 - [x] Trackpad with native multi-touch gestures
-- [x] Touchscreen (disabled in the EFI to save power)
+- [x] Touchscreen (disabled with `SSDT-TPL1.aml` to save power)
 - [x] Battery percentage and cycle count
 - [x] Ambient light sensor
 - [x] USB Type-C Power Delivery
 
 ## What needs some more work
-- [ ] Fix iServices on macOS Sonoma
+- [ ] Fix Apple Messages and FaceTime on macOS Sonoma
 - [ ] Improve battery life by configuring Active State Power Management (ASPM)
 
 ## What will probably never work
-- [ ] NVIDIA GeForce MX150 dGPU (disabled with an SSDT)
-- [ ] Fingerprint sensor (disabled in the UEFI BIOS)
+- [ ] NVIDIA GeForce MX150 dGPU (disabled with `SSDT-dGPU-Off.aml`)
+- [ ] Fingerprint sensor (disabled in the UEFI Firmware)
 - [ ] Webcam (depends on the camera vendor of your model)
 
 ## Enabling native HiDPI display settings in macOS
-To enable a few more native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script, select `Enable HiDPI`, then select `Manual input resolution` and enter `2160x1440 1920x1280 1600x1066 1280x854 1080x720` in the input prompt.
+To enable native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script, select `Enable HiDPI`, then select `Manual input resolution` and enter `2160x1440 1920x1280 1600x1066 1280x854 1080x720` in the input prompt.
 
 ## Disabling CFG Lock to improve Power Management
 1. Boot into OpenCore
@@ -81,7 +81,7 @@ To enable a few more native HiDPI settings in the Display Preferences of macOS, 
 4. Press enter
 5. Restart
 
-To verify this worked, press Space and select the `Check CFG Lock State` -- if it was successful, you'll see:
+To verify this worked, press Space and select the `Check CFG Lock State` tool -- if it was successful, you'll see:
 
 > This firmware has UNLOCKED MSR 0xE2 register!
 
@@ -106,11 +106,11 @@ First we need to disable the Overclocking Lock in the UEFI Firmware:
 4. Press enter
 5. Restart
 
-The `VoltageShift.kext` undervolting tool is already included and enabled in this repository's `Kexts` folder. To be able to launch the `voltageshift` command line tool from anywhere, copy [VoltageShift from the Tools folder](https://github.com/jlempen/Surface-Go-2-OpenCore/blob/main/Tools/VoltageShift-EFI.zip) to your `/usr/local/bin` folder by entering `sudo cp voltageshift /usr/local/bin/` in the macOS terminal after navigating to the folder where you downloaded and unzipped the `voltageshift` executable file.
+The `VoltageShift.kext` undervolting tool is already included and enabled in this repository's `Kexts` folder. To be able to launch the `voltageshift` command line tool from anywhere, copy [VoltageShift from the Tools folder](https://github.com/jlempen/MateBook-13-2019-OpenCore/blob/main/Tools/VoltageShift-EFI.zip) to your `/usr/local/bin` folder by entering `sudo cp voltageshift /usr/local/bin/` in the macOS terminal after navigating to the folder where you downloaded and unzipped the `voltageshift` executable file.
 
 Refer to the instructions found in the [VoltageShift repository](https://github.com/sicreative/VoltageShift), as well as to the excellent howto found in [zearp's repository](https://github.com/zearp/Nucintosh#undervolting).
 
-## Details of the modified UEFI Firmware variables 
+## More information on the modified UEFI Firmware variables 
 | VarName | VarOffset | VarStore | From | To |
 | ---------------- | -- | -- | --------- | --------- |
 | CFG Lock | 0x3E | 0x3 (CpuSetup) | 0x1 (Enabled) | 0x0 (Disabled) |
@@ -130,8 +130,8 @@ Repeat for every UEFI variable you wish to revert to its default value.
 
 ***Please be aware that you need to revert any changes made to your `config.plist` file before reverting the UEFI variables to their default values, or macOS won't boot anymore!***
 
-## Fixing broken iMessage
-To fix issues with iMessage (Apple Messages) related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable the `AirportItlwm-***.kext` in your `config.plist` and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.4.1/HeliPort.dmg) instead.
+## Fixing broken Apple Messages and FaceTime
+To fix issues with Apple Messages and FaceTime related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable all `AirportItlwm-***.kext` entries under `Kernel -> Add` in your `config.plist` file and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.4.1/HeliPort.dmg) instead.
 
 ## Related repositories
 * https://github.com/yusufklncc/Huawei-Matebook-13-Hackintosh
