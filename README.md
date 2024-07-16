@@ -132,6 +132,7 @@ Repeat for every UEFI variable you wish to revert to its default value.
 
 ## Fixing broken Apple Messages and FaceTime
 To fix issues with Apple Messages and FaceTime related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable all `AirportItlwm-***.kext` entries under `Kernel -> Add` in your `config.plist` file and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.4.1/HeliPort.dmg) instead.
+The latest version 2.3.0 of itlwm.kext is already included in the Kext folder and `config.plist` file.
 
 ## Related repositories
 * https://github.com/yusufklncc/Huawei-Matebook-13-Hackintosh
