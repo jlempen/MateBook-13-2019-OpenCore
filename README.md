@@ -3,6 +3,15 @@
 # MateBook-13-2019-OpenCore
 macOS on the Huawei MateBook 13 2019 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
+## Software Specifications
+| Software         | Version                            |
+| ---------------- | ---------------------------------- |
+| Target OS        | Apple macOS 13.6.7 Ventura and 14.5 Sonoma |
+| OpenCore         | [MOD-OC v1.0.1](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.1_08932be/OpenCore-Mod-1.0.1-RELEASE.zip) |
+| SMBIOS           | MacBookPro15,2 |
+| UEFI Firmware    | v1.39 |
+| SSD format       | APFS file system, GPT partition table |
+
 > [!NOTE]
 > This repo is kept alive for informational purposes only.
 >
@@ -17,18 +26,11 @@ This repository is neither a howto nor an installation manual. Using these files
 ## Recommendations
 I recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
-For macOS to be able to boot on the MateBook 13 2019, the `Secure Boot` option _**must be disabled**_ in the UEFI.
+> [!IMPORTANT]
+> For macOS to be able to boot on the Surface Laptop 3, the `Secure Boot` option _**must be disabled**_ [in the UEFI](https://github.com/jlempen/Surface-Laptop-3-OpenCore/blob/main/README.md#uefi-settings). The boot screen will then display a large red bar with a padlock symbol at the top of the display when Secure Boot is disabled.
 
-Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` file. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a MateBook 13 2019 with this repository's EFI folder.
-
-## Software Specifications
-| Software         | Version                            |
-| ---------------- | ---------------------------------- |
-| Target OS        | Apple macOS 13.6.7 Ventura and 14.5 Sonoma |
-| OpenCore         | [MOD-OC v1.0.1](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.1_08932be/OpenCore-Mod-1.0.1-RELEASE.zip) |
-| SMBIOS           | MacBookPro15,2 |
-| UEFI Firmware    | v1.39 |
-| SSD format       | APFS file system, GPT partition table |
+> [!IMPORTANT]
+> Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` file. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a MateBook 13 2019 with this repository's EFI folder.
 
 ## Computer Specifications
 | Device           | Hardware                           |
