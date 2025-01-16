@@ -3,6 +3,11 @@
 # MateBook-13-2019-OpenCore
 macOS on the Huawei MateBook 13 2019 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
+> [!NOTE]
+> This repo is kept alive for informational purposes only.
+>
+> As I don't own this laptop anymore, I won't be able to provide any help or update for it.
+
 ## Abstract
 Apart from the webcam and the fingerprint sensor, everything is working perfectly like on a real MacBook Air/Pro. The battery runtime is around five to six hours, similar to the battery runtime in Windows.
 
